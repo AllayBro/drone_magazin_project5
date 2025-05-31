@@ -1,0 +1,55 @@
+### Получение JWT токенов
+POST http://localhost:8000/login/
+Content-Type: application/json
+
+{
+  "username": "your_username",
+  "password": "your_password"
+}
+
+### Регистрация пользователя (и получение токенов)
+POST http://localhost:8000/register/
+Content-Type: application/json
+
+{
+  "username": "newuser",
+  "password": "newpassword123",
+  "email": "new@example.com",
+  "phone": "+79000000000"
+}
+
+### Получить список всех пользователей (только админ)
+GET http://localhost:8000/api/users/
+Authorization: Bearer {{access_token}}
+
+### Получить список всех дронов
+GET http://localhost:8000/api/drones/
+
+### Создать нового дрона (только админ)
+POST http://localhost:8000/api/drones/
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
+
+{
+  "name": "DJI Mavic Air 2",
+  "price": 1200,
+  "type": "quadcopter",
+  "image": "http://example.com/dji.jpg"
+}
+
+### Получить список своих бронирований
+GET http://localhost:8000/api/bookings/
+Authorization: Bearer {{access_token}}
+
+### Создать бронирование (авторизованный пользователь)
+POST http://localhost:8000/api/bookings/
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
+
+{
+  "drone": 1,
+  "start_date": "2025-05-20T14:00:00Z",
+  "duration": 3,
+  "customer_name": "Иван Иванов",
+  "phone": "+79161234567"
+}
